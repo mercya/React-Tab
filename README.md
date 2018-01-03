@@ -9,4 +9,5 @@ TabView的使用
 里面有些图片没有资源 所以在跑的时候需要Dissall
 包括 React
 PropTypes
+添加新的控件框架需要用yarn add XXX的方法 
 
