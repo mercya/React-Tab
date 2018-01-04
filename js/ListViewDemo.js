@@ -10,32 +10,19 @@ import {
     Text,
     View,
     ListView,
-    ToastAndroid
+    ToastAndroid,
+    TouchableOpacity,
+    Image
 } from 'react-native';
+var THUMB_URLS=[
+    require('../images/icon1.png'),
+    require('../images/icon2.png'),
+    require('../images/icon3.png'),
+    require('../images/icon4.png'),
+];
 
 
 export default class ListViewDemo extends Component<{}> {
-    componentDidMount() {
-
-    }
-    async _asyGetData(url){
-        try{
-            let  response = await fetch(url)
-            let json=await response.json()
-            return json.result
-        }catch (e){
-            console.log("网络请求失败"+e)
-        }
-    }
-    async _combineData(){
-        try{
-            var  searchData={}
-            let service_data=await  this._asyGetData("")
-            searchData.service = service_data.service_list
-        }catch (e){
-            console.log("合并数据失败"+e)
-        }
-    }
     constructor(props){
         super(props)
         var ds=new ListView.DataSource({
@@ -48,11 +35,6 @@ export default class ListViewDemo extends Component<{}> {
             data:{a:['内容1','1'],b:['内容2','2'],c:['内容3','3'],d:['内容4','4'],e:['内容5','5']},
         }
     }
-
-
-
-
-
 //     getInitialState: function() {
 //     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 //     return {
@@ -60,11 +42,16 @@ export default class ListViewDemo extends Component<{}> {
 // };
     // 返回一个Item
     renderRow(rowData,sectionID,rowID){
+        var imgSource=THUMB_URLS[rowID];
         return(
             // 实例化Item
-            <View onPress={()=>this.setConsoleLog(rowData)}>
-                <Text style={{backgroundColor:'red', height:44}}>内容{rowData},在第{sectionID}组第{rowID}行</Text>
+        <TouchableOpacity>
+            <View style={styles.row}>
+                <Image style={styles.thumb} source={imgSource}></Image>
+                <Text style={{}}>内容{rowData},在第{sectionID}组第{rowID}行</Text>
             </View>
+        </TouchableOpacity>
+
         )
     }
     setConsoleLog(content){
@@ -73,8 +60,9 @@ export default class ListViewDemo extends Component<{}> {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View>
                 <ListView style={{backgroundColor:'yellow'}}
+                          initialListSize={this.state.data.size}
                           dataSource={this.state.dataSource.cloneWithRowsAndSections(this.state.data)}
                           renderRow={this.renderRow }/>
             </View>
@@ -83,10 +71,14 @@ export default class ListViewDemo extends Component<{}> {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
+    row: {
+        flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        padding: 10,
+        backgroundColor: '#F6F6F6',
+    },
+    thumb: {
+        width: 50,
+        height: 50,
     },
 });

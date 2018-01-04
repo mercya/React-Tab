@@ -38,6 +38,7 @@ export default class App extends Component<{}> {
         let tabIconNames=this.state.tabIconNames;
         return (
             <ScrollableTabView
+
                 renderTabBar={()=> <Item tabNames={tabNames} tabIconNames={tabIconNames}/>}
                 tabBarPosition='bottom'>
                 <View>
