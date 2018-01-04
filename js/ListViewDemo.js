@@ -6,10 +6,11 @@
 
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-    ListView
+    StyleSheet,
+    Text,
+    View,
+    ListView,
+    ToastAndroid
 } from 'react-native';
 
 
@@ -36,7 +37,7 @@ export default class ListViewDemo extends Component<{}> {
         }
     }
     constructor(props){
-      super(props)
+        super(props)
         var ds=new ListView.DataSource({
             rowHasChanged:(r1,r2)=>r1!=r2,
             sectionHeaderHasChanged:(s1,s2)=>s1!==s2,
@@ -61,21 +62,24 @@ export default class ListViewDemo extends Component<{}> {
     renderRow(rowData,sectionID,rowID){
         return(
             // 实例化Item
-            <View>
-              <Text style={{backgroundColor:'red', height:44}}>内容{rowData},在第{sectionID}组第{rowID}行</Text>
+            <View onPress={()=>this.setConsoleLog(rowData)}>
+                <Text style={{backgroundColor:'red', height:44}}>内容{rowData},在第{sectionID}组第{rowID}行</Text>
             </View>
         )
     }
+    setConsoleLog(content){
+        ToastAndroid.show(content,RCTToastAndroid.SHORT);
+    }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <ListView style={{backgroundColor:'yellow'}}
-                  dataSource={this.state.dataSource.cloneWithRowsAndSections(this.state.data)}
-                  renderRow={this.renderRow }/>
-      </View>
-    );
-  }
+    render() {
+        return (
+            <View style={styles.container}>
+                <ListView style={{backgroundColor:'yellow'}}
+                          dataSource={this.state.dataSource.cloneWithRowsAndSections(this.state.data)}
+                          renderRow={this.renderRow }/>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
