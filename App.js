@@ -15,6 +15,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import Item from './js/Item';
 import AndroidTool from './js/AndroidTool';
 import ListViewDemo from './js/ListViewDemo';
+import NetWork from './js/NetWork';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
@@ -29,7 +30,7 @@ export default class App extends Component<{}> {
         super(props);
         this.state={
             tabNames:['marco','demo','piexl','cast'],
-            tabIconNames:['ios-paper','ios-albums','ios-paper-plane','ios-person-add'],
+            tabIconNames:['icon1','icon2','icon3','icon1'],
         };
     }
 
@@ -38,20 +39,18 @@ export default class App extends Component<{}> {
         let tabIconNames=this.state.tabIconNames;
         return (
             <ScrollableTabView
-
-                renderTabBar={()=> <Item tabNames={tabNames} tabIconNames={tabIconNames}/>}
+                renderTabBar={()=>
+                    <Item tabNames={tabNames} tabIconNames={tabIconNames}/>}
                 tabBarPosition='bottom'>
                 <View>
                     <AndroidTool></AndroidTool>
                 </View>
-
                 <View style={styles.content} tabLabel='key2'>
-                    <Text>#2</Text>
+                    <NetWork></NetWork>
                 </View>
                 <View style={styles.content} tabLabel='key3'>
                     <ListViewDemo></ListViewDemo>
                 </View>
-
                 <View style={styles.content} tabLabel='key4'>
                     <Text>#4</Text>
                 </View>

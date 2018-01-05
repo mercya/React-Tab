@@ -17,12 +17,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 export default class Item extends Component<{}> {
 
     propTypes = {
-        goToPage: PropTypes.func, // 跳转到对应tab的方法
+        //这些事defaultTabBar 在ScrollableTabView里面的部分参数
+        goToPage:PropTypes.func,
         activeTab: PropTypes.number, // 当前被选中的tab下标
         tabs: PropTypes.array, // 所有tabs集合
 
         tabNames: PropTypes.array, // 保存Tab名称
         tabIconNames: PropTypes.array, // 保存Tab图标
+
     }
     setAnimationValue({value}){
         console.log(value);
