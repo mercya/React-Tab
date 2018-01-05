@@ -11,3 +11,8 @@ TabView的使用
 PropTypes
 添加新的控件框架需要用yarn add XXX的方法 
 
+
+http://www.lcode.org/react-native/
+
+发现一个很好的RN的博客
+
