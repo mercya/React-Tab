@@ -12,7 +12,8 @@ import {
     ListView,
     ToastAndroid,
     TouchableOpacity,
-    Image
+    Image,
+    RefreshControl
 } from 'react-native';
 var THUMB_URLS=[
     require('../images/icon1.png'),
@@ -30,6 +31,7 @@ export default class ListViewDemo extends Component<{}> {
             sectionHeaderHasChanged:(s1,s2)=>s1!==s2,
         })
         this.state={
+            refreshing:false,
             // dataSource:ds.cloneWithRows(['内容1','内容2','内容3','内容4','内容5','内容6','内容7',])
             dataSource:ds,
             data:{a:['内容1','1'],b:['内容2','2'],c:['内容3','3'],d:['内容4','4'],e:['内容5','5']},
@@ -45,26 +47,47 @@ export default class ListViewDemo extends Component<{}> {
         var imgSource=THUMB_URLS[rowID];
         return(
             // 实例化Item
-        <TouchableOpacity>
-            <View style={styles.row}>
-                <Image style={styles.thumb} source={imgSource}></Image>
-                <Text style={{}}>内容{rowData},在第{sectionID}组第{rowID}行</Text>
-            </View>
-        </TouchableOpacity>
+            <TouchableOpacity>
+                <View style={styles.row}>
+                    <Image style={styles.thumb} source={imgSource}></Image>
+                    <Text style={{}}>内容{rowData},在第{sectionID}组第{rowID}行</Text>
+                </View>
+            </TouchableOpacity>
 
         )
     }
     setConsoleLog(content){
         ToastAndroid.show(content,RCTToastAndroid.SHORT);
     }
+    _onRefresh(){
+        this.setState({refreshing:true});
+        setTimeout(()=>{
+
+            THUMB_URLS.slice(0,THUMB_URLS.length);
+            THUMB_URLS.push(require('../images/icon3.png'));
+            this.setState({
+                refreshing:false,
+            })
+        },2000)
+    }
 
     render() {
         return (
             <View>
-                <ListView style={{backgroundColor:'yellow'}}
-                          initialListSize={this.state.data.size}
-                          dataSource={this.state.dataSource.cloneWithRowsAndSections(this.state.data)}
-                          renderRow={this.renderRow }/>
+                <ListView
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh}
+                        />
+                    }
+                    style={{backgroundColor:'yellow'}}
+                    initialListSize={this.state.data.size}
+                    dataSource={this.state.dataSource.cloneWithRowsAndSections(this.state.data)}
+                    renderRow={this.renderRow }
+
+
+                />
             </View>
         );
     }

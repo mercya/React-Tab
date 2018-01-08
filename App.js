@@ -16,6 +16,7 @@ import Item from './js/Item';
 import AndroidTool from './js/AndroidTool';
 import ListViewDemo from './js/ListViewDemo';
 import NetWork from './js/NetWork';
+import ListViewDemo2 from './js/ListViewDemo2';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
@@ -52,7 +53,7 @@ export default class App extends Component<{}> {
                     <ListViewDemo></ListViewDemo>
                 </View>
                 <View style={styles.content} tabLabel='key4'>
-                    <Text>#4</Text>
+                    <ListViewDemo2></ListViewDemo2>
                 </View>
 
             </ScrollableTabView>
