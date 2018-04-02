@@ -20,6 +20,7 @@ export default class AndroidTool extends Component<{}> {
                     style={styles.toolbar}
                     title={"只存在标题"}>
                 </ToolbarAndroid>
+
         );
     }
 }

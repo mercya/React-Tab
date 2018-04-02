@@ -85,8 +85,6 @@ export default class ListViewDemo extends Component<{}> {
                     initialListSize={this.state.data.size}
                     dataSource={this.state.dataSource.cloneWithRowsAndSections(this.state.data)}
                     renderRow={this.renderRow }
-
-
                 />
             </View>
         );

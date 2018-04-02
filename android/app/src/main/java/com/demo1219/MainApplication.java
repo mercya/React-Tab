@@ -2,6 +2,8 @@ package com.demo1219;
 
 import android.app.Application;
 
+import com.demo1219.Package.JsReactPackage;
+import com.demo1219.Package.VideoViewPackage;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -22,7 +24,10 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage()
+              new MainReactPackage(),
+              new JsReactPackage(),
+              new VideoViewPackage()
+              
       );
     }
 

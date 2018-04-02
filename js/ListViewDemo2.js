@@ -18,6 +18,7 @@ import Row from '../js/Row';
 
 export default class ListViewDemo2 extends Component<{}> {
 
+
     constructor(props) {
         super(props);
         this.state = {
@@ -70,11 +71,11 @@ export default class ListViewDemo2 extends Component<{}> {
 
 const styles =StyleSheet.create({
     row:{
-      borderColor:'red',
         borderWidth:5,
         padding:20,
         backgroundColor:'#3a5795',
         margin:5,
+        borderRadius:10,
     },
     text:{
         alignSelf:'center',

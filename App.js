@@ -14,9 +14,11 @@ import {
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import Item from './js/Item';
 import AndroidTool from './js/AndroidTool';
-import ListViewDemo from './js/ListViewDemo';
-import NetWork from './js/NetWork';
+import ListViewDemo from './js/demo';
 import ListViewDemo2 from './js/ListViewDemo2';
+import NetWork from './js/FetchExample';
+import VideoView from './js/VideoView';
+import Bu from './js/Bu';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
@@ -31,7 +33,7 @@ export default class App extends Component<{}> {
         super(props);
         this.state={
             tabNames:['marco','demo','piexl','cast'],
-            tabIconNames:['icon1','icon2','icon3','icon1'],
+            tabIconNames:['ios-paper', 'ios-albums', 'ios-paper-plane', 'ios-person-add'],
         };
     }
 
@@ -50,12 +52,11 @@ export default class App extends Component<{}> {
                     <NetWork></NetWork>
                 </View>
                 <View style={styles.content} tabLabel='key3'>
-                    <ListViewDemo></ListViewDemo>
+                    <Bu></Bu>
                 </View>
                 <View style={styles.content} tabLabel='key4'>
                     <ListViewDemo2></ListViewDemo2>
                 </View>
-
             </ScrollableTabView>
         );
     }

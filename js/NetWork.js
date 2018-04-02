@@ -9,8 +9,11 @@ import {
     StyleSheet,
     Text,
     View,
-    ActivityIndicator
+    ActivityIndicator,
+    Alert
 } from 'react-native';
+import ToastExample from '../js/ToastExample';
+ToastExample.show("Awesome",ToastExample.SHORT);
 
 
 export default class NetWork extends Component<{}> {
@@ -42,7 +45,7 @@ export default class NetWork extends Component<{}> {
                 isLoading:false
             })
         }).catch((error) => {
-            alert('错误了');
+            ToastExample.show("Awesome",ToastExample.SHORT);
             this.setState({
                 isLoading:false
             });

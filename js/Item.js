@@ -21,10 +21,8 @@ export default class Item extends Component<{}> {
         goToPage:PropTypes.func,
         activeTab: PropTypes.number, // 当前被选中的tab下标
         tabs: PropTypes.array, // 所有tabs集合
-
         tabNames: PropTypes.array, // 保存Tab名称
         tabIconNames: PropTypes.array, // 保存Tab图标
-
     }
     setAnimationValue({value}){
         console.log(value);
@@ -33,16 +31,15 @@ export default class Item extends Component<{}> {
         this.props.scrollValue.addListener(this.setAnimationValue);
     }
     renderTabOption(tab,i){
-        let color=this.props.activeTab== i ? "#6B8E23":"#ADADAD";
+        let color=this.props.activeTab== i ? "#562333":"#ADADAD";
         return(
             <TouchableOpacity
                 onPress  ={()=>this.props.goToPage(i)} style={styles.tab}>
                 <View style={styles.tabItem}>
                     <Icon
-                        name={this.props.tabIconNames[i]}
+                        name={this.props.tabIconNames[i]}//图标没显示出来。。
                         size={30}
-                        color={color}
-                    />
+                        color={color}/>
                     <Text style={{color: color}}>
                         {this.props.tabNames[i]}
                     </Text>
